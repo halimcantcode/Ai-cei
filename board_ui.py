@@ -4,15 +4,15 @@ from logic import Color, Square
 from vars import *
 from typing import Tuple
 
-from functions import isInbounds
 
-PADDING_WIDTH = 150
-PADDING_HEIGHT = 10
+P_W = 15
+P_H = 10
 
 
-def get_x_y_w_h():
+
+def get_pos():
     W, H = pygame.display.get_surface().get_size()
-    m = min(W - 2 * PADDING_WIDTH, H - 2 * PADDING_HEIGHT)
+    m = min(W - 2 * P_W, H - 2 * P_H)
     x = (W - m) // 2
     y = (H - m) // 2
     return x, y, m, m
@@ -23,7 +23,7 @@ def coord_from_pos(coord_x, coord_y) -> Tuple[int, int]:
     Fait le lien entre les pixels et les coordonnées de la matrice
     :return: Retourne i,j les coordonnées de la matrice de Board
     """
-    x, y, w, h = get_x_y_w_h()
+    x, y, w, h = get_pos()
     i = (coord_y - y) // (h // 8)
     j = (coord_x - x) // (w // 8)
     return i, j

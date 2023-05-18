@@ -1,5 +1,5 @@
 import threading
-from board_ui import Board, get_x_y_w_h, pygame
+from board_ui import Board, get_pos, pygame
 from logic import Logic, Color, State, Square, Move
 from vars import *
 from tools.button import TextButton
@@ -122,7 +122,7 @@ class ChessGame:
 
     def draw(self):
         self.win.fill(BLACK)
-        self.board.draw(self.win, self.current_piece_legal_moves, *get_x_y_w_h())
+        self.board.draw(self.win, self.current_piece_legal_moves, *get_pos())
         for button in self.buttons:
             button.draw(self.win)
         pygame.display.flip()

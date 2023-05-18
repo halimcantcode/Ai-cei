@@ -1,6 +1,7 @@
 from itertools import product
 from enum import Enum
-from functions import other_color, isInbounds
+from vars import *
+from functions import other_color
 from square import Square, Move, Side
 
 
