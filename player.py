@@ -58,7 +58,7 @@ class Bot(Player):
 def play_well(logic, randomize=True) -> tuple[float, Move]:
     # Try to find a move in the opening book
     directory = os.path.dirname(__file__)
-    with chess.polyglot.open_reader(os.path.join(directory, "opening_books", "performance.bin")) as reader:
+    with chess.polyglot.open_reader(os.path.join(directory, "books", "performance.bin")) as reader:
         good_moves = []
         board = chess.Board(logic.get_fen())
         for move_entry in reader.find_all(board):
@@ -300,7 +300,7 @@ if __name__ == "__main__":
     board.push_san("Bc5")
     board.push_san("Nxf7")
 
-    with chess.polyglot.open_reader("opening_books/Human.bin") as reader:
+    with chess.polyglot.open_reader("books/Human.bin") as reader:
         for entry in reader.find_all(board):
             print(entry.move, entry.weight, entry.learn)
             print(type(entry.move))

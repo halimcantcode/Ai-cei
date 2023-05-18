@@ -2,7 +2,7 @@ import threading
 from board_ui import Board, get_pos, pygame
 from logic import Logic, Color, State, Square, Move
 from vars import *
-from tools.button import TextButton
+#from tools.button import TextButton
 from player import Human, Bot, PlayerType
 
 
@@ -29,9 +29,7 @@ class ChessGame:
 
         # Buttons
         self.buttons = []
-        self.btn_new_game = TextButton("New Game", 10, 50, pygame.font.SysFont("Arial", 32), WHITE)
-        self.btn_flip_board = TextButton("Flip Board", 10, 100, pygame.font.SysFont("Arial", 32), WHITE)
-        self.buttons.extend((self.btn_new_game, self.btn_flip_board))
+       
 
     def run(self):
         clock = pygame.time.Clock()
@@ -47,7 +45,6 @@ class ChessGame:
             if event.type == pygame.QUIT:
                 self.window_on = False
 
-            self.check_buttons(events)
             if not self.game_on:
                 continue
             turn = self.logic.turn
@@ -102,18 +99,7 @@ class ChessGame:
                     self.play(move)
                     self.returnlist = [None]
 
-    def check_buttons(self, events):
-        for event in events:
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                pos = pygame.mouse.get_pos()
-                if self.btn_new_game.tick():
-                    self.bot_is_thinking = False
-                    self.logic = Logic(STARTINGPOSFEN)
-                    self.board.update(self.logic)
-                    self.game_on = True
-                    self.current_piece_legal_moves = []
-                if self.btn_flip_board.tick():
-                    self.board.flip_board()
+ 
 
     def check_end(self):
         if self.logic.state != State.GAMEON:

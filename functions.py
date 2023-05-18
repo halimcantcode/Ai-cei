@@ -3,9 +3,6 @@ class Color:
 
 
 
-def isInbounds(i, j):
-    return 0 <= i <= 7 and 0 <= j <= 7
-
 
 def other_color(color: Color):
     from pieces import Color
