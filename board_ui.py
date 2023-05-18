@@ -1,7 +1,7 @@
 import pygame
 import logic
 from logic import Color, Square
-from constants import *
+from vars import *
 from typing import Tuple
 
 from functions import isInbounds

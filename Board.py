@@ -1,6 +1,6 @@
 import pygame
 
-from constants import *
+from vars import *
 
 
 class Board:
