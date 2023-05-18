@@ -27,19 +27,19 @@ CASESIZE = BOARDSIZE // 8
 # Pieces
 
 dir = os.path.dirname(__file__)
-P_image = image.load(fr"{dir}/assets/row-1-col-6.png")  # white
-R_image = image.load(fr"{dir}/assets/row-1-col-5.png")  # white
-N_image = image.load(fr"{dir}/assets/row-1-col-4.png")  # white
-B_image = image.load(fr"{dir}/assets/row-1-col-3.png")  # white
-Q_image = image.load(fr"{dir}/assets/row-1-col-2.png")  # white
-K_image = image.load(fr"{dir}/assets/row-1-col-1.png")  # white
+P_image = image.load(fr"{dir}/assets/pw.png")  # white
+R_image = image.load(fr"{dir}/assets/Rw.png")  # white
+N_image = image.load(fr"{dir}/assets/nw.png")  # white
+B_image = image.load(fr"{dir}/assets/bw.png")  # white
+Q_image = image.load(fr"{dir}/assets/qw.png")  # white
+K_image = image.load(fr"{dir}/assets/Kingw.png")  # white
 
-p_image = image.load(fr"{dir}/assets/row-2-col-6.png")  # black
-r_image = image.load(fr"{dir}/assets/row-2-col-5.png")  # black
-n_image = image.load(fr"{dir}/assets/row-2-col-4.png")  # black
-b_image = image.load(fr"{dir}/assets/row-2-col-3.png")  # black
-q_image = image.load(fr"{dir}/assets/row-2-col-2.png")  # black
-k_image = image.load(fr"{dir}/assets/row-2-col-1.png")  # black
+p_image = image.load(fr"{dir}/assets/pb.png")  # black
+r_image = image.load(fr"{dir}/assets/Rb.png")  # black
+n_image = image.load(fr"{dir}/assets/nb.png")  # black
+b_image = image.load(fr"{dir}/assets/bb.png")  # black
+q_image = image.load(fr"{dir}/assets/qb.png")  # black
+k_image = image.load(fr"{dir}/assets/Kingb.png")  # black
 
 # other
 STARTINGPOSFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
