@@ -1,9 +1,60 @@
 from itertools import product
 from enum import Enum
 from vars import *
-from functions import other_color
-from square import Square, Move, Side
+from color import other_color
+import enum
 
+
+
+class Side(enum.Enum):
+    QUEEN = 0
+    KING = 1
+
+
+class Square:
+    def __init__(self, *args):
+        if len(args) == 1:
+            square_string = args[0]
+            self.j = ord(square_string[0]) - 97
+            self.i = int(square_string[1]) - 1
+        else:
+            self.i = args[0]
+            self.j = args[1]
+
+    def __str__(self):
+        return f"{chr(self.j + 97)}{self.i + 1}"
+
+    def __repr__(self):
+        return f"{chr(self.j + 97)}{self.i + 1}"
+
+    def __eq__(self, other):
+        return self.i == other.i and self.j == other.j
+
+    def __hash__(self):
+        return hash((self.i, self.j))
+
+
+class Move:
+    def __init__(self, origin: Square, destination: Square, is_check: bool = False, is_capture: bool = False,
+                 promotion: str = None):
+        self.origin = origin
+        self.destination = destination
+        self.promotion = promotion
+
+        self.is_capture = False
+        self.is_check = False
+
+    def __eq__(self, other):
+        return self.origin == other.origin and self.destination == other.destination
+
+    def __str__(self):
+        s = f"{self.origin} -> {self.destination}"
+        if self.is_check:
+            s += " *"
+        return s
+
+    def __repr__(self):
+        return self.__str__()
 
 # forwards declaration
 class Logic:
@@ -17,7 +68,7 @@ class Color(Enum):
 
 class Piece:
     def __init__(self, color, square: Square):
-        from logic import Logic
+        from game import Logic
         self.never_moved = True
         self.color: Color = color
         self.square: Square = square
@@ -26,15 +77,10 @@ class Piece:
         self.i, self.j = i, j
 
     def almost_legal_moves(self, board: Logic) -> list[Move]:
-        """Cette fonction est overriden pour chacune des pièces, elle renvoie les moves possible pour une pièce
-        en prenant en compte les autres pièces de l'échequier mais sans prendre en compte les échecs au roi"""
-        pass
+     pass
 
     def legal_moves(self, logic: Logic) -> list[Move]:
-        """ Returns the list of every almost legal move this piece has which means it does not care about checks,
-        checks are handled in  legal_moves
-         Format is (i, j, id) with id being 1 if it is a capture and ((2 if it is a check)) (else 0) """
-        from logic import Logic
+        from game import Logic
         returnlist = []
         if self.color != logic.turn:
             raise Exception(f"It is not this piece's turn, it is {logic.turn} turn\n"
@@ -51,18 +97,14 @@ class Piece:
         return returnlist
 
     def attacking_squares(self, logic) -> list[Square]:
-        """returns the list of every coordinates this piece is attacking/protecting, it is a bit different from
-        almos_legal moves since a protected piece is not attacked """
         return [move.destination for move in self.almost_legal_moves(logic)]
 
     def moved(self, square: Square) -> None:
-        """Updates the info the piece has about itself"""
         self.never_moved = False
         self.square = square
 
     def get_fen(self) -> str:
-        """Returns the fen notation of the piece"""
-        return self.abreviation if self.color == Color.WHITE else self.abreviation.lower()
+         return self.abreviation if self.color == Color.WHITE else self.abreviation.lower()
 
     def __str__(self):
         s = f"{self.color} {self.abreviation} at {self.square}"

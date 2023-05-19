@@ -1,6 +1,6 @@
 import numpy as np
 from numpy import ndarray, sqrt
-from pieces import Square, Move, Color, piece_from_abreviation, other_color, Side, Piece, Pawn, Knight, Bishop, Rook, Queen, King
+from piece import Square, Move, Color, piece_from_abreviation, other_color, Side, Piece, Pawn, Knight, Bishop, Rook, Queen, King
 import enum
 
 

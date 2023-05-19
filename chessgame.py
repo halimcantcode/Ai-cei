@@ -1,9 +1,8 @@
 import threading
-from board_ui import Board, get_pos, pygame
-from logic import Logic, Color, State, Square, Move
+from board import Board, get_pos, pygame
+from game import Logic, Color, State, Square, Move
 from vars import *
-#from tools.button import TextButton
-from player import Human, Bot, PlayerType
+from plyer import Human, Bot, PlayerType
 
 
 

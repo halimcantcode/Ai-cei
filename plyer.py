@@ -2,8 +2,8 @@ import os
 import time
 from random import choice
 
-from logic import Logic, Color, State, Move, Square
-from pieces import piece_value
+from game import Logic, Color, State, Move, Square
+from piece import piece_value
 import enum
 import logging
 import coloredlogs

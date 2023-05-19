@@ -1,6 +1,6 @@
 import pygame
-import logic
-from logic import Color, Square
+import game
+from game import Color, Square
 from vars import *
 from typing import Tuple
 
@@ -19,10 +19,7 @@ def get_pos():
 
 
 def coord_from_pos(coord_x, coord_y) -> Tuple[int, int]:
-    """
-    Fait le lien entre les pixels et les coordonnées de la matrice
-    :return: Retourne i,j les coordonnées de la matrice de Board
-    """
+   
     x, y, w, h = get_pos()
     i = (coord_y - y) // (h // 8)
     j = (coord_x - x) // (w // 8)
@@ -68,7 +65,7 @@ class Board:
     def is_empty(self, i, j):
         return (self.get_piece_at(i, j)) is None
 
-    def update(self, logic: logic):
+    def update(self, logic: game):
         for i in range(8):
             for j in range(8):
                 self.set_piece(i, j, logic.get_piece(Square(i, j)))
@@ -88,22 +85,16 @@ class Board:
         return False
 
     def drag(self, pos) -> None:
-        """Called only when a piece is already being dragged"""
         self.dragged_piece_pos = pos
 
     def drop(self, pos) -> Tuple[int, int]:
-        """Called when a piece is already being dragged and the mouse is released"""
         i, j = self.f(*coord_from_pos(*pos))
         self.set_to_not_gone()
         return i, j
 
-    def flip_board(self):
-        self.flipped = not self.flipped
-
-    # affichage
+ 
 
     def draw(self, win, dots, x, y, w, h):
-        """Draws everything"""
         self.draw_board(win, x, y, w, h)
         self.draw_pieces(win, x, y, w, h)
         self.draw_dots(win, dots, x, y, w, h)
