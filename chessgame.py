@@ -1,4 +1,5 @@
 import threading
+from time import sleep
 from board import Board, get_pos, pygame
 from game import Logic, Color, State, Square, Move
 from vars import *
@@ -9,7 +10,7 @@ from plyer import Human, Bot, PlayerType
 
 
 class ChessGame:
-    def __init__(self, win, fen):
+    def __init__(self, win, fen,mode):
         self.win = win
         self.logic = Logic(fen=fen)
         self.board = Board(BOARDSIZE)
@@ -18,9 +19,14 @@ class ChessGame:
         self.current_piece_legal_moves = []
         self.game_on = True
         self.window_on = True
+        if mode == "BOT":
+            modew=modeb=PlayerType.BOT
+        else:
+            modew=PlayerType.HUMAN
+            modeb=PlayerType.BOT
 
-        self.players = {Color.WHITE: PlayerType.HUMAN,
-                        Color.BLACK: PlayerType.BOT}
+        self.players = {Color.WHITE: modew,
+                        Color.BLACK: modeb}
 
         self.bot_is_thinking = False
         self.returnlist = [None]
@@ -85,6 +91,9 @@ class ChessGame:
             if not self.bot_is_thinking:
                 self.bot_is_thinking = True
                 # Start the thinking thread
+#sleep 3 seconds
+                
+                sleep(1)
                 p = Bot()
                 self.thread = threading.Thread(target=p.play, args=(self.logic, self.returnlist))
                 self.thread.start()

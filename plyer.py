@@ -21,7 +21,7 @@ coloredlogs.install(level="DEBUG")
 
 class PlayerType(enum.Enum):
     HUMAN = 0
-    BOT = 1
+    BOT = 1 
 
 
 class Player:
